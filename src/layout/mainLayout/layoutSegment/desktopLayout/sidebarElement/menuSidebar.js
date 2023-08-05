@@ -2,7 +2,7 @@ import { Box, Typography } from '@mui/material'
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { setDescriptionEn, setDescriptionId, setNavigation, setSubMenu } from '../../../../../features/navigation'
+import { setDescriptionEn, setDescriptionId, setNavigation, setSubMenu, setSubMenuEn, setSubMenuId, setSubMenuTitle } from '../../../../../features/navigation'
 import { listNavigationUp } from '../component'
 
 const MenuSidebar = () => {
@@ -16,10 +16,18 @@ const MenuSidebar = () => {
     };
     
     const handleClick = (title, desc, deskripsi, subMenu) => {
+        const firstData = subMenu[0];
+        const menuTitle = firstData.name;
+        const menuDesc = firstData.desc;
+        const menuDeskripsi = firstData.deskripsi;
+
         dispatch(setNavigation(title))
         dispatch(setDescriptionId(deskripsi))
         dispatch(setDescriptionEn(desc))
-        dispatch(setSubMenu(subMenu));
+        dispatch(setSubMenu(subMenu))
+        dispatch(setSubMenuTitle(menuTitle))
+        dispatch(setSubMenuId(menuDeskripsi))
+        dispatch(setSubMenuEn(menuDesc))
     }
     
     return (
